@@ -26,7 +26,7 @@ Configure apache httpd.conf first. Changes needed:
 Next configure apache httpd-ssl.conf
 <ul>
 <li>Change 'Listen 443' to 'Listen 4443'</li>
-<li>Change '<VirtualHost _default_:443>' to '<VirtualHost _default_:4443>'</li>
+<li>Change '&lt;VirtualHost _default_:443&gt;' to '&lt;VirtualHost _default_:4443&gt;'</li>
 <li>Save this file as well</li>
 </ul>
 
