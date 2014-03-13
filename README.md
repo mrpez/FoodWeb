@@ -11,10 +11,23 @@ Once downloaded, run the installer. Install the product to any location you woul
 The only required components are PHP and MySQL, check the rest if only you would like. 
 
 Once installed, run the control panel (the exe for this is in the install directory root).
-Configure apache httpd.conf first. Changes needed: change 'Listen 80' to 'Listen 8880', 'ServerName localhost:80' to 'ServerName localhost:8880', under the Directory block
- change 'Require all denied' to 'Require all granted', finally in document root text in quotes to the location of your cloned GIT repo (mine is 'C:\Users\Ryan\...\FoodWeb') and the text in quotes 
- one line immeditately below. Finally save the file.
+Configure apache httpd.conf first. Changes needed:
+<ul>
+<li>Change 'Listen 80' to 'Listen 8880'</li>
+<li>Change 'ServerName localhost:80' to 'ServerName localhost:8880'</li>
+<li>Under the [&lt;Directory &gt;] block, change 'Require all denied' to 'Require all granted'</li>
+<li>
+ Change 'DocumentRoot "[install directory]"' to 'DocumentRoot "[The webRoot folder in your cloned repo]"
+ and do the same thing with the directory in quotes directly below the DocumentRoot line
+</li>
+<li>Save the Document</li>
+</ul>
  
-Next configure apache httpd-ssl.conf. Change 'Listen 443' to 'Listen 4443' and change '<VirtualHost _default_:443>' to '<VirtualHost _default_:4443>'. Save this file as well.
+Next configure apache httpd-ssl.conf
+<ul>
+<li>Change 'Listen 443' to 'Listen 4443'</li>
+<li>Change '<VirtualHost _default_:443>' to '<VirtualHost _default_:4443>'</li>
+<li>Save this file as well</li>
+</ul>
 
-Now you should be able to click start on APACHE and MySQL. Browsing to http://127.0.0.1:8880 should provide you with the homepage for your cloned version of FoodWeb.
+Now you should be able to click start on APACHE and MySQL from the control panel. Browsing to http://127.0.0.1:8880 should provide you with the homepage for your cloned version of FoodWeb.
