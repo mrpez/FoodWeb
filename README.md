@@ -6,7 +6,8 @@ FoodWeb is a service based application with which food can be ordered via the we
 Set Up - How To
 =======
 
-To setup the FoodWeb codebase, go to XAMPP, link to lite version: http://softlayer-ams.dl.sourceforge.net/project/xampp/XAMPP%20Windows/1.8.3/xampp-portable-win32-1.8.3-3-VC11-installer.exe.
+To setup the FoodWeb codebase, go to XAMPP, link to lite version. If you are installing at home use this: http://softlayer-ams.dl.sourceforge.net/project/xampp/XAMPP%20Windows/1.8.3/xampp-portable-win32-1.8.3-3-VC11-installer.exe.
+If you are installing at school, you need to get a portable zipped version that doesn't require an installer. This one should work at school, use 7-Zip to extract it: http://softlayer-dal.dl.sourceforge.net/project/xampp/XAMPP%20Windows/1.8.3/xampp-portable-win32-1.8.3-2-VC11.7z
 Once downloaded, run the installer. Install the product to any location you would like. If you are using a school computer, throw it on your H: drive so you can use it on another computer. 
 The only required components are PHP and MySQL, check the rest if only you would like. 
 
