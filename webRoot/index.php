@@ -1,6 +1,9 @@
-Tes
-<?php 
+<?php
 
-echo 'This is a test';
+include("header.php");
 
-phpinfo(); ?>
+
+
+include("footer.php");
+
+?>
