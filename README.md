@@ -3,6 +3,49 @@ FoodWeb
 
 FoodWeb is a service based application with which food can be ordered via the web from local food vendors who will deliver to you.
 
+Better/Easier Set Up
+=======
+Since we need this on the school computers, here is an easier way of doing things.<br />
+<ul>
+<li>Download the zipped portable edition from <a href="http://softlayer-dal.dl.sourceforge.net/project/xampp/XAMPP%20Windows/1.8.3/xampp-portable-win32-1.8.3-2-VC11.7z">here</a></li>
+<li>Use 7-zip (right click, find 7-zip option) and extract to H: drive. Rename folder to XAMPP</li>
+<li>
+	Navigate into the folder you just extracted. Open the apache folder, open the conf folder, and edit httpd.conf
+	<ul>
+		<li>Change this 
+<pre>
+&lt;Directory /&gt;
+    AllowOverride none
+    Require all denied
+&lt;/Directory&gt;
+</pre>
+to this
+<pre>
+&lt;Directory /&gt;
+    AllowOverride none
+    Require all granted
+&lt;/Directory&gt;
+</pre>
+		</li>
+		<li>Change this
+<pre>
+DocumentRoot "/My Documents/xampp/htdocs"
+&lt;Directory "/My Documents/xampp/htdocs"&gt;
+</pre>
+to this (unless your FoodWeb clone is located somewhere else)
+<pre>
+DocumentRoot "/Desktop/GitHub/FoodWeb/webRoot"
+&lt;Directory "/Desktop/GitHub/FoodWeb/webRoot"&gt;
+</pre>
+		
+		</li>
+	</ul>
+</li>
+<li>
+	That&apos;s it! To start the server, open apache_start.bat and mysql_start.bat in the top of the XAMPP folder.
+</li>
+</ul>
+
 Set Up - How To
 =======
 
