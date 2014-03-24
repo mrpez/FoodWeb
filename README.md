@@ -46,24 +46,32 @@ DocumentRoot "/Desktop/GitHub/FoodWeb/webRoot"
 </li>
 </ul>
 
-Set Up - How To
+Pulling Changes
+=======
+Pulling changes from other's repo into your own fork.
+<ul>
+	<li>
+		In the GitHub app, under the repositories section, right click on your clone of the FoodWeb repository
+		and select &apos;Open a shell here&apos;
+	</li>
+	<li>
+		After waiting for the shell to initialize (takes some time) type &apos;git pull https://github.com/[username]/FoodWeb&apos; and press Enter
+	</li>
+	<li>
+		This should have merged the new changes into your local clone of your repo. To then merge into your
+		online GitHub account, close the prompt window and &apos;Sync&apos; your repo up.
+	</li>
+</ul>
+
+Additional Changes (Port Changing)
 =======
 
-To setup the FoodWeb codebase, go to XAMPP, link to lite version. If you are installing at home use this: http://softlayer-ams.dl.sourceforge.net/project/xampp/XAMPP%20Windows/1.8.3/xampp-portable-win32-1.8.3-3-VC11-installer.exe.
-If you are installing at school, you need to get a portable zipped version that doesn't require an installer. This one should work at school, use 7-Zip to extract it: http://softlayer-dal.dl.sourceforge.net/project/xampp/XAMPP%20Windows/1.8.3/xampp-portable-win32-1.8.3-2-VC11.7z
-Once downloaded, run the installer. Install the product to any location you would like. If you are using a school computer, throw it on your H: drive so you can use it on another computer. 
-The only required components are PHP and MySQL, check the rest if only you would like. 
+Sometimes port 80 might be taken by another process on your system. This shows how to change that.
 
-Once installed, run the control panel (the exe for this is in the install directory root).
-Configure apache httpd.conf first. Changes needed:
+Configure apache httpd.conf. Changes needed:
 <ul>
 <li>Change 'Listen 80' to 'Listen 8880'</li>
 <li>Change 'ServerName localhost:80' to 'ServerName localhost:8880'</li>
-<li>Under the [&lt;Directory &gt;] block, change 'Require all denied' to 'Require all granted'</li>
-<li>
- Change 'DocumentRoot "[install directory]"' to 'DocumentRoot "[The webRoot folder in your cloned repo]"
- and do the same thing with the directory in quotes directly below the DocumentRoot line
-</li>
 <li>Save the Document</li>
 </ul>
  
