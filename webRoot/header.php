@@ -1,10 +1,8 @@
 <?php
 	if( !class_exists('Utility') ) {
-		include(dirname(__FILE__) . '/class/Utility.php');
-		$Utility = new Utility;
+		include(dirname(__FILE__) . '/class/LoginController.php');
+		$LoginController = new LoginController;
 	}
-	
-	$Utility->getPDO();
 ?>
 <!DOCTYPE HTML>
 <html>
