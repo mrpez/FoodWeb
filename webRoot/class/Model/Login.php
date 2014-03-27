@@ -1,7 +1,7 @@
 <?php
 
 	if( !class_exists('Utility') ) {
-		include(dirname(__FILE__ . '/../Utility.php'));
+		include(dirname(__FILE__) . '/../Utility.php');
 		$Utility = new Utility;
 	}
 	
@@ -10,15 +10,20 @@
 		private $isLoggedIn = false;
 		private $userIndex = null;
 		
+		function __construct() {
+			$this->isLoggedIn = false;
+			$this->userIndex = null;		
+		}		
+		
 		public function getLoginStatus() {
-			return $this->$isLoggedIn;
+			return $this->isLoggedIn;
 		}
 		
 		public function getUserIndex() {
 			if( $this->isLoggedIn != true ) {
 				return false;
 			}
-			return $this->$userIndex;
+			return $this->userIndex;
 		}
 		
 		public function setLoginStatus($loginStatus = false) {
