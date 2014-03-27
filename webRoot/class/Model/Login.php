@@ -7,8 +7,8 @@
 	
 	class Login extends Utility {
 		
-		private $isLoggedIn = false;
-		private $userIndex = null;
+		private $isLoggedIn;
+		private $userIndex;
 		
 		function __construct() {
 			$this->isLoggedIn = false;
