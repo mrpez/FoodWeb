@@ -4,23 +4,39 @@
 		include(dirname(__FILE__) . '/../Utility.php');
 		$Utility = new Utility;
 	}
+	$maxItems = 5;
+	$maxSide = 10;  //2 sides per food item
+	
+	public class order{
+		public $orderName;
+		public $items[$maxItems];
+		public $sides[$maxSides];
+		
+		public function setOrderName($x){
+		$this->name =$x;
+		}
+		
+		public function saveMenuItem($x){
+			$i=count($items);
+			$this->$items[$i] = $x;
+		}
+		
+		public funtion saveSideItem($x){
+			$i=count($sides);
+			$this->$sides[$i] = $x;
+		}
+		
+		
+		
+		
+	}
+	
 	
 	class Menu extends Utility {
 		
-		private $categories;
-		private $
+
 		
-		function __construct() {
-			$this->isLoggedIn = false;	
-		}		
 		
-		public function getLoginStatus() {
-			return $this->isLoggedIn;
-		}
-		
-		public function setLoginStatus($loginStatus = false) {
-			$this->$loginStatus = $loginStatus;
-		}
 		
 	}
 
