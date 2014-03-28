@@ -10,13 +10,15 @@
 	$errorCount = 0;
 	$testCount = 0;
 	
-	$testCount++;
-	$Login->setLoginStatus(true);
-	if($Login->getLoginStatus() == true) {
-		echo 'Passed... <br />';
-	} else {
-		$errorCount++;
-		echo 'Failed... <br />';
+	{
+		$testCount++;
+		$Login->setLoginStatus(true);
+		if($Login->getLoginStatus() == true) {
+			echo 'Passed... <br />';
+		} else {
+			$errorCount++;
+			echo 'Failed... <br />';
+		}
 	}
 	
 	$testCount++;

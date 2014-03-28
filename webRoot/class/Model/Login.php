@@ -12,7 +12,7 @@
 		
 		function __construct() {
 			$this->isLoggedIn = false;
-			$this->userIndex = null;		
+			$this->userIndex = null;
 		}
 		
 		public function getLoginStatus() {
