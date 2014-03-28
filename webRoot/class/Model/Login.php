@@ -13,7 +13,7 @@
 		function __construct() {
 			$this->isLoggedIn = false;
 			$this->userIndex = null;		
-		}		
+		}
 		
 		public function getLoginStatus() {
 			return $this->isLoggedIn;
@@ -26,12 +26,12 @@
 			return $this->userIndex;
 		}
 		
-		public function setLoginStatus($loginStatus = false) {
-			$this->$loginStatus = $loginStatus;
+		public function setLoginStatus($loginStatus = true) {
+			$this->isLoggedIn = $loginStatus;
 		}
 		
 		public function setUserIndex($userIndex = false) {
-			$this->$userIndex = $userIndex;
+			$this->userIndex = $userIndex;
 		}
 		
 	}
