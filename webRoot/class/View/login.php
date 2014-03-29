@@ -1,5 +1,10 @@
 <?php
 	
+	echo '<form method="post">
+		  <h1>FoodWeb</h1>';
+	
+	
+	
 	$loginSuccess = false;
 	
 	if( array_key_exists('username', $_POST)
@@ -15,7 +20,7 @@
 	}
 	
 	echo '<form method="post">
-		  <h1>Login</h1>';
+		  <h1>Vendor Login</h1>';
 	if( array_key_exists('username', $_POST)
 		&& !$loginSuccess )
 	{
