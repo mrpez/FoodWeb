@@ -2,9 +2,8 @@
 
 include("header.php");
 
-echo 'Test';
+echo 'This is the FoodWeb Homepage. Login to start!';
 
-echo 'Ryan says hello';
 
 include("footer.php");
 

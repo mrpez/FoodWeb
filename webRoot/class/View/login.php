@@ -1,30 +1,16 @@
 <?php
 	
-	echo '<form method="post">
-		  <h1>FoodWeb</h1>';
 	
 	
-	
-	$loginSuccess = false;
-	
-	if( array_key_exists('username', $_POST)
-		&& array_key_exists('password', $_POST) )
-	{
-		if( !class_exists('LoginController') ) {
-			include(dirname(__FILE__) . '/class/controller/LoginController.php');
-			$LoginController = new LoginController;
-		}
-		
-		$loginSuccess = $LoginController->login($_POST['username'], $_POST['password']);
-		
-	}
+	$loginSuccess = false;	
 	
 	echo '<form method="post">
-		  <h1>Vendor Login</h1>';
+		  <h2>Login</h2>
+		  <p>No login? <a href="/view.php?view=register">Register here.</a>';
 	if( array_key_exists('username', $_POST)
 		&& !$loginSuccess )
 	{
-		echo '<span style="color:red;">The username or password you entered is invalid. Please try again.';
+		echo '<p class="error">The username or password you entered is invalid. Please try again.</p>';
 	}
 	echo '<table>
 				<tr>
