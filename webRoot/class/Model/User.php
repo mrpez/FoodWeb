@@ -12,6 +12,23 @@
 				Utility::throwError('No User Index supplied to User Model');
 			}
 		}
+		public function getUserStadus() {
+			return $this->userIsIn;
+		}
+		
+		public function getUserIndex() {
+			if( $this->userIsIn != true ) {
+				return false;
+			}
+			return $this->userIndex;
+		}
+		
+		public function setUserStatus($userStatus = true) {
+			$this->userIsIn = $userStatus;
+		}
+		public function setUserIndex($userIndex = false) {
+			$this->userIndex = $userIndex;
+		}
 		
 	}
 	
