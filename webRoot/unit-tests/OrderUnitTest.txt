@@ -1,0 +1,112 @@
+<?php
+
+	echo 'Starting Order Model Test...<hr />';
+	
+	include(dirname(__FILE__) . '/../class/Model/Orderphp');
+	$Order = new Order;
+	
+	echo 'Testing Order Name Attribute<br />';
+		
+	$errorCount = 0;
+	$testCount = 0;
+	
+	{
+		$testCount++;
+		$Order->setOrderName("Brandon's Order");
+		if($Order->getOrderName() == "Brandon's Order") {
+			echo 'Passed... <br />';
+		} else {
+			$errorCount++;
+			echo 'Failed... <br />';
+		}
+	}
+	
+	$testCount++;
+	$Order->setOrderName("Ryan's Order");
+	if($Order->getOrderName() == "Ryan's Order"){
+		echo 'Passed... <br /><br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br /><br />';
+	}
+	echo (($errorCount/$testCount) * 100) . '% Error Rate (' . $errorCount . '/' . $testCount . ') <hr />';
+	
+	echo 'Testing Item Attribute<br />';
+	
+	$errorCount = 0;
+	$testCount = 0;
+	
+	$Order->addMenuItem("Pasta");
+	$Order->addMenuItem("Hamburger");
+	$testCount++;
+	$Items=$Order->getItems();
+	
+	
+	if($Items(0) == "Pasta") {
+		echo 'Passed... <br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br />';
+	}
+	$testCount++;
+	if($Items(1) == "Hamburger") {
+		echo 'Passed... <br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br />';
+	}
+	$testCount++;
+	$Order->addMenuItem("Mac N Cheese");
+	$Items=$Order->getItems();
+	
+	if($Items(2) == "Mac N Cheese") {
+		echo 'Passed... <br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br />';
+	}
+	
+	
+	echo (($errorCount/$testCount) * 100) . '% Error Rate (' . $errorCount . '/' . $testCount . ')<hr />';
+
+	echo 'Testing Side Attribute<br />';
+	
+	$errorCount = 0;
+	$testCount = 0;
+	
+	$Order->addSideItem("Fries");
+	$Order->addSideItem("Salad");
+	$testCount++;
+	$Sides=$Order->getSides();
+	
+	
+	if($Sides(0) == "Fries") {
+		echo 'Passed... <br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br />';
+	}
+	$testCount++;
+	if($Sides(1) == "Salad") {
+		echo 'Passed... <br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br />';
+	}
+	$testCount++;
+	
+	$Order->addSideItem("Potato");
+	$Sides=$Order->getSides();
+	
+	if($Sides(2) == "Potato") {
+		echo 'Passed... <br />';
+	} else {
+		$errorCount++;
+		echo 'Failed... <br />';
+	}
+	
+	
+	echo (($errorCount/$testCount) * 100) . '% Error Rate (' . $errorCount . '/' . $testCount . ')<hr />';
+	
+
+?>
