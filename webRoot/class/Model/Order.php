@@ -11,7 +11,7 @@
 		private $sides = array(1);
 		
 		public function setOrderName($x){
-			$this->name =$x;
+			$this->orderName =$x;
 		}
 		
 		public function addMenuItem($x){
@@ -21,6 +21,17 @@
 		public funtion addSideItem($x){
 			$this->sides[] = $x;
 		}		
+		
+		public function getOrderName() {
+			return $this->orderName;
+		}
+		public function getItems(){
+			return $this->items;
+		}
+		
+		public function getSides(){
+			return $this->sides;
+		}
 		
 	}
 	
