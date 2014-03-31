@@ -55,9 +55,9 @@
 		<div id="headerControls">
 			<?php
 				if( $LoginController->getLoginStatus() )
-					echo '<a href="/view.php?view=logout">Logout</a>';
+					echo '<a href="/logout.fw">Logout</a>';
 				else
-					echo '<a href="/view.php?view=login">Login</a>';
+					echo '<a href="/login.fw">Login</a>';
 			?>
 		</div>
 		<div style="clear:both;"></div>

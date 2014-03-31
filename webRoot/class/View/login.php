@@ -6,7 +6,7 @@
 	
 	echo '<form method="post">
 		  <h2>Login</h2>
-		  <p>No login? <a href="/view.php?view=register">Register here.</a>';
+		  <p>No login? <a href="/register.fw">Register here.</a>';
 	if( array_key_exists('username', $_POST)
 		&& !$loginSuccess )
 	{
