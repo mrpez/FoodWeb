@@ -6,28 +6,38 @@
 	}
 	
 	class User extends Utility {
+	
+		private $email;
+		private $name;
+		private $photo_location;
 		
 		function __construct($user_index = false) {
 			if( $user_index == false ) {
 				Utility::throwError('No User Index supplied to User Model');
 			}
 		}
-		public function getUserStadus() {
-			return $this->userIsIn;
+		public function getEmail() {
+			return $this->email;
 		}
 		
-		public function getUserIndex() {
-			if( $this->userIsIn != true ) {
-				return false;
-			}
-			return $this->userIndex;
+		public function getName() {
+			return $this->name;
 		}
 		
-		public function setUserStatus($userStatus = true) {
-			$this->userIsIn = $userStatus;
+		public function getPhoto() {
+			return $this->photo_location;
 		}
-		public function setUserIndex($userIndex = false) {
-			$this->userIndex = $userIndex;
+		
+		public function setEmail($email) {
+			$this->email = $email;
+		}
+		
+		public function setName($name) {
+			$this->name = $name;
+		}
+		
+		public function setPhoto($photo_location) {
+			$this->photo_location = $photo_location;
 		}
 		
 	}
