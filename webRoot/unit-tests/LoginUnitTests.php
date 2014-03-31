@@ -1,6 +1,6 @@
 <?php
 
-	echo 'Starting Login Model Test...<hr />';
+	echo '<br /><h3>Starting Login Model Test...</h3><hr />';
 	
 	include(dirname(__FILE__) . '/../class/Model/Login.php');
 	$Login = new Login;
