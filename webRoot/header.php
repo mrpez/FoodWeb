@@ -8,6 +8,7 @@
 <html>
 <head>
 	<title>FoodWeb</title>
+	<link href='http://fonts.googleapis.com/css?family=Bangers|Titan+One' rel='stylesheet' type='text/css'>
 	<style type="text/css">
 		body {
 			padding: 0;
@@ -23,6 +24,16 @@
 		
 		div#headerBand a#logo {
 			text-decoration: none;
+			font-family: Bangers;
+			letter-spacing: 2px;
+		}
+
+		span#logoSubtext {
+			font-family:'Titan One';
+			font-size: 13px;
+			margin-left: 5px;
+			margin-top: 16px;
+			float: left;
 		}
 		
 		div#headerBand a {
@@ -52,6 +63,7 @@
 		<div id="headerTitle">
 			<a id="logo" href="/"><h1>FoodWeb</h1></a>
 		</div>
+		<span id="logoSubtext">Order Fast. Eat Well. FoodWeb.</span>
 		<div id="headerControls">
 			<?php
 				if( $LoginController->getLoginStatus() )
