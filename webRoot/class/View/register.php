@@ -1,5 +1,4 @@
 <?php
-
 	if( !class_exists('UserController') ) {
 		include(dirname(__FILE__) . '/../Controller/UserController.php');
 		$UserController = new UserController;
