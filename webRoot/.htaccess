@@ -1,4 +1,3 @@
 RewriteEngine on
 
-RewriteRule ^(.*).html /view.php?view=$1 [L]
-RewriteRule ^(.*).fw /view.php?view=$1 [L]
+RewriteRule ^(.*).(foodweb|fw|html) /view.php?view=$1 [L]
