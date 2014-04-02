@@ -6,7 +6,7 @@ class Utility
 	public function getPDO() {
 		$dbCredentials = array(1);
 		$dbCredentials[ 'server' ] = '127.0.0.1';
-		$dbCredentials[ 'database' ] = 'test_db';
+		$dbCredentials[ 'database' ] = 'foodweb';
 		$dbCredentials[ 'u' ] = 'root';
 		$dbCredentials[ 'p' ] = '';
 		
@@ -46,8 +46,40 @@ class Utility
 	
 	public function throwError($details) {
 		echo '<pre>
-				' . nl2br($details) . '
+				' . var_dump($details) . '
 			  </pre>';
+	}
+	
+		
+	public function hashPassword( $password ) {
+		return md5( 'a t4&P(*#' . $password );
+	}
+	
+	public function getRandomHash() {
+		return md5( 'adsfh 2389dsf2:[s09' . date('r') . (4 * date('i')) );
+	}
+	
+	public function sanitizeString( $string ) {
+		return htmlspecialchars( $string );
+	}
+	
+	public function cleanDatabaseTimestamp( $timestamp, $displayDepth = 3 ) {
+		//This assumes that the database uses PST timezone and converts to EST
+		$thisTime = strtotime($timestamp);
+		$thisTime += 10800;
+		
+		switch($displayDepth) {
+			case 1:					
+				return date('M jS, Y', $thisTime);
+			case 2:
+				return date('D, M jS, Y', $thisTime);
+			default:
+				return date('D, M jS, Y \a\t g:ia', $thisTime);
+		}
+	}
+	
+	public function getTempDir() {
+		return sys_get_temp_dir() . '/';
 	}
 }
 ?>
