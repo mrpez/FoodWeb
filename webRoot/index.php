@@ -2,9 +2,12 @@
 
 include("header.php");
 
-echo 'Test';
+echo 'This is the FoodWeb Homepage. Login to start!<br /><br />
+	  <h3>Actions</h3>
+	  <ul>
+		<li><a href="/vendor-signup.fw">Become a Vendor</a></li>
+	  </ul>';
 
-echo 'Ryan says hello';
 
 include("footer.php");
 

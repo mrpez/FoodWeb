@@ -26,12 +26,13 @@
 			return $this->userIndex;
 		}
 		
-		public function setLoginStatus($loginStatus = true) {
+		public function setLoginStatus($loginStatus) {
 			$this->isLoggedIn = $loginStatus;
 		}
 		
-		public function setUserIndex($userIndex = false) {
+		public function setUserIndex($userIndex) {
 			$this->userIndex = $userIndex;
+			$this->isLoggedIn = true;
 		}
 		
 	}
