@@ -1,30 +1,5 @@
 <?php
 	
-	$errorString = '';
-	$showForm = true;
-	if( array_key_exists('businessName', $_POST) ) {
-	
-		if( strlen($_POST['businessName']) == 0 )
-			$errorString .= 'Please provide your Business Name.<br />';
-			
-		if( strlen($_POST['foodtype']) == 0)
-			$errorString .= 'Please provide what type of food you provide.<br />';
-			
-		//will continue to make more address fields for more information
-		if( strlen($_POST['address']) == 0)
-			$errorString .= 'Please provide the location of your business (Street Number, Street, City, State, ZipCode.<br />';
-		
-		if( strlen($_POST['phone']) == 0)
-			$errorString .= 'Please provide a phone number for your business EX:(xxx-xxx-xxxx).<br />';
-			
-		if( strlen($errorString) == 0 ) {
-			//still working on this! there is no user controller 
-			$showForm = !$UserController->registerUser($_POST['businessName'], $_POST['foodtype'], $_POST['address'], $_POST['phone'], $_POST['password1']);
-		}
-	}
-	
-	
-	
 	if( $showForm == true) {
 	//will continue to make more address fields for more information
 		echo '<h1>Vendor Sign Up</h1>
