@@ -35,6 +35,9 @@
 			return true;
 		}
 		
+		public function edit_hours($day, $opening_time, $closing_time, $vendor_id = $this->getVendorid()){
+			
+		}
 	}
 	
 ?>

@@ -1,7 +1,6 @@
 <?php
 	
 	if( $showForm == true) {
-	//will continue to make more address fields for more information
 		echo '<h1>Vendor Sign Up</h1>
 			  <p>Here you can sign up to sell your own products on FoodWeb.</p>
 			  <form method="post">

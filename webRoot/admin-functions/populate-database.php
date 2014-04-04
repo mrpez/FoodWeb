@@ -99,6 +99,21 @@
 	if(!$query->execute())
 		var_dump($query->errorInfo());
 		
+	$query = $dbCon->prepare("CREATE TABLE vendor_hours
+							  (
+								id integer auto_increment not null primary key
+								, vendor_id integer
+								, day_of_week tinyint
+								, opening_time time
+								, closing_time time
+								, Foreign Key (vendor_id) references vendors(id)
+							  )");
+	if(!$query->execute())
+		var_dump($query->errorInfo());
+	
+	
+	
+		
 	echo '</pre>';
 		
 	echo '<hr />Done!';
