@@ -69,6 +69,49 @@
 			// Finally return true;
 			return true;
 		}
+	//--------Forgotten Pass------------	
+		public function forgotPass($email){
+		$PDODB = Utility::getPDO();
+			
+		// Check if email already exists in DB
+		$query = $PDODB->prepare("SELECT id
+									  FROM users
+									  WHERE email = :email;");
+		$query->bindParam(':email', $email);
+		if(!$query->execute()) {
+			Utility::throwError($query->errorInfo());
+			return false;
+		}
+			
+		// If it exists, fail
+			if( count($query->fetchAll()) )
+				return false;
+				
+		// Get the last id from the above query
+			$user_id = $PDODB->lastInsertId();
+			$resetkey = Utility::getRandomHash();
+		
+		// Now store their key
+		$query = $PDODB->prepare("INSERT INTO user_resetkey
+									 (user_id,
+									 resetkey
+									 )
+									 VALUES
+									 (:user_id,
+									 :resetkey
+									 )");
+		$query->bindParam(':user_resetkey', $resetkey);
+		if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+		}
+		echo "Your email with reset key has been sent to '$email' ";
+	}
+	//-----------------------------------
+		
+		
+		
+		}
 		
 		public function hashPassword($password) {
 			return md5('asdfasd23@#@#SDAF' . $password . '232ssdds**&^^');

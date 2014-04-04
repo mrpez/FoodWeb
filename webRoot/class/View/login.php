@@ -6,7 +6,8 @@
 	
 	echo '<form method="post">
 		  <h2>Login</h2>
-		  <p>No login? <a href="/register.fw">Register here.</a>';
+		  <p>No login? <a href="/register.fw">Register here.</a>;
+		  <p> Reset password. <a href="/reset.fw">Reset here.</a>';
 	if( array_key_exists('username', $_POST)
 		&& !$loginSuccess )
 	{
