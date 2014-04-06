@@ -9,9 +9,8 @@
 
 	
 	if( !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) )
-		$errorString .= 'Please provide a valid email address to reset password.<br />';
-	if( $showForm == true) {
-	
+		$errorString .= 'Please provide a valid email address to reset password.<br/>';	
+	if( $showForm == true){	
 	echo '<form method="post">
 				<h2>Register</h2>
 				
@@ -26,7 +25,9 @@
 			  </form>';
 	
 	else {
-		
+		$subject = "Reset password"
+		$message  = " Your reset verification key is '$resetkey'. Click link <a href="https://www.foodweb/loginreset.fw">here </a> to reset id.";
+		bool mail ($_POST['email'], $subject ,  $message [, string null [, string null ]] );
 		echo '<p>Thank you "$email" for reseting your password. Please wait a few moments while systems proccess. </p>';
 	}
 	?>

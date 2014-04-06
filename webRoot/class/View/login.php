@@ -1,7 +1,4 @@
 <?php
-	
-	
-	
 	$loginSuccess = false;	
 	
 	echo '<form method="post">
