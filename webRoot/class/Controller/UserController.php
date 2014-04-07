@@ -83,8 +83,8 @@
 			return false;
 		}
 			
-		// If it exists, fail
-			if( count($query->fetchAll()) )
+		// If it doesn't exist, fail
+		if( count($query->fetchAll()) == 0 )
 				return false;
 				
 		// Get the last id from the above query
@@ -101,11 +101,14 @@
 									 :resetkey
 									 )");
 		$query->bindParam(':user_resetkey', $resetkey);
+
 		if(!$query->execute()) {
 				Utility::throwError($query->errorInfo());
 				return false;
 		}
-		echo "Your email with reset key has been sent to '$email' ";
+		$subject = "Reset password"
+		$message  = " Your reset verification key is " . $resetkey . ". Click link <a href=\"https://www.foodweb/loginreset.fw?resetKey=" . $resetkey . "\">here</a> to reset id.";
+		bool mail ($_POST['email'], $subject ,  $message);
 	}
 	//-----------------------------------
 		

@@ -1,18 +1,8 @@
 <?php
-	if( !class_exists('UserController') ) {
-		include(dirname(__FILE__) . '/../Controller/UserController.php');
-		$UserController = new UserController;
-	}
-	
-	$errorString = '';
-	$showForm = true;
 
-	
-	if( !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) )
-		$errorString .= 'Please provide a valid email address to reset password.<br/>';	
 	if( $showForm == true){	
 	echo '<form method="post">
-				<h2>Register</h2>
+				<h2>Reset</h2>
 				
 				<span class="error">' . $errorString . '</span>
 
@@ -21,13 +11,13 @@
 						<td>Email</td>
 						<td><input type="text" name="email" value="' . ((array_key_exists('email', $_POST)) ? $Utility->sanitizeString($_POST['email']) : '') . '"/></td>
 				</tr>
-							</table>
+				<tr>
+						<td colspan="2"><input type="submit" value="Send Key"/></td>
+				</table>
 			  </form>';
 	
 	else {
-		$subject = "Reset password"
-		$message  = " Your reset verification key is '$resetkey'. Click link <a href="https://www.foodweb/loginreset.fw">here </a> to reset id.";
-		bool mail ($_POST['email'], $subject ,  $message [, string null [, string null ]] );
-		echo '<p>Thank you "$email" for reseting your password. Please wait a few moments while systems proccess. </p>';
+
+		echo "<p>Thank you ". $email ." for reseting your password. Please wait a few moments while systems proccess. </p>";
 	}
 	?>

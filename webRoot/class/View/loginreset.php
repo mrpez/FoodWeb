@@ -19,7 +19,8 @@
 		if( strlen($errorString) == 0 ) {
 			$showForm = !$UserController->registerUser($_POST['email'], $_POST['name'], $_POST['password1']);
 		}
-			
+		if( array_key_exists('resetKey', $_GET) )
+
 if( $showForm == true) {
 		echo '<form method="post">
 				<h2>Register</h2>
