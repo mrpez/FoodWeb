@@ -1,9 +1,13 @@
 <?php
-echo '<h1>Edit Hours</h1>
+//this is the view!
+if( $showForm == true) {
+		echo '<h1>Edit Hours</h1>
 			  <p>Here you can edit your business hours for each day of the week.</p>
+			  <form method="post">
 				<table class="formTable">
+				<span class="error">' . $errorString . '</span>
 					<tr>
-						<select>
+						<select name="day_of_week">
 							<option value="0">Sunday</option>
 							<option value="1">Monday</option>
 							<option value="2">Tuesday</option>
@@ -25,7 +29,7 @@ echo '<h1>Edit Hours</h1>
 							<td colspan="2"><input type="submit" value="Submit Changes"/></td>
 				</table>
 			  </form>';
-
-
-
+	} else {
+		echo '<p>Thank you for changing your hours! Please continue.</p>';
+	}
 ?>
