@@ -1,6 +1,5 @@
 <?php
-
-	if( $showForm == true){	
+if( $showForm == true){	
 	echo '<form method="post">
 				<h2>Reset</h2>
 				
