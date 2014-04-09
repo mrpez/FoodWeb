@@ -1,5 +1,5 @@
 <?php
-	if( !class_exists('Utility') ) {
+	if( !class_exists('LoginController') ) {
 		include(dirname(__FILE__) . '/class/Controller/LoginController.php');
 		$LoginController = new LoginController;
 	}

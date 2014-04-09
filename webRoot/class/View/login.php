@@ -3,8 +3,10 @@
 	
 	echo '<form method="post">
 		  <h2>Login</h2>
-		  <p>No login? <a href="/register.fw">Register here.</a>;
-		  <p> Reset password. <a href="/reset.fw">Reset here.</a>';
+		  <p>
+			No login? <a href="/register.fw">Register here.</a><br />
+			Forgot Password? <a href="/reset.fw">Reset here.</a>
+		  </p>';
 	if( array_key_exists('username', $_POST)
 		&& !$loginSuccess )
 	{
