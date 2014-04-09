@@ -74,6 +74,9 @@
 			return md5('asdfasd23@#@#SDAF' . $password . '232ssdds**&^^');
 		}
 		
+		public function editUserSettings{
+		}
+		
 	}
 	
 ?>
