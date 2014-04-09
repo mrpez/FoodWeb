@@ -75,6 +75,7 @@
 		}
 		
 		public function editUserSettings{
+			
 		}
 		
 	}

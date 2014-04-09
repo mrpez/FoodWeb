@@ -17,7 +17,7 @@
 			
 		if( strlen($errorString) == 0 ) {
 			//still working on this!
-			$showForm = !$USerController->promoteUserToVendor($LoginController->getUserIndex(), $_POST['businessName']);
+			$showForm = !$USerController->;
 	}
 
 ?>
