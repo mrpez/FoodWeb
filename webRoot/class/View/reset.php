@@ -3,20 +3,8 @@
 		include(dirname(__FILE__) . '/../Controller/UserController.php');
 		$UserController = new UserController;
 	}
-					
-	$errorString = '';
-	$showForm = true;
-
-
 	
-	if( !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) )
-		$errorString .= 'Please provide a valid email address to reset password.<br/>';	
-	
-	if( strlen($errorString) == 0 ) {
-		$showForm = !$UserController->forgotPass($_POST['email']);
-	}
-	
-	if( $showForm == true){	
+	if( $showForm == true) {	
 	echo '<form method="post">
 				<h2>Reset</h2>
 				
@@ -32,7 +20,7 @@
 				</table>
 			  </form>';
 	
-	else {
+	} else {
 
 		echo "<p>Thank you ". $email ." for reseting your password. Please wait a few moments while systems proccess. </p>";
 	}
