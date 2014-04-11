@@ -1,4 +1,7 @@
 <?php
+	echo '<pre>';
+	var_dump($_GET);
+	die;
 	
 	include(dirname(__FILE__) . '/class/Utility.php');
 	$Utility = new Utility;
@@ -23,14 +26,7 @@
 	var_dump($password);
 	
 	
-	$query = $PDODB->prepare("SELECT U.id, U.*, UP.*
-							  FROM users U
-							  INNER JOIN user_passwords UP
-								ON U.id = UP.user_id
-								AND UP.password = :password
-							  WHERE U.email = :email");
-	$query->bindParam(':password', $password);
-	$query->bindParam(':email', $email);
+	$query = $PDODB->prepare("SELECT * FROM users WHERE email = 'test'");
 	
 	if( !$query->execute() ) {
 		Utility::throwError($query->errorInfo());
