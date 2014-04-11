@@ -2,7 +2,17 @@
 class Utility
 {
 	private $PDODB = null;
+	private $DBObj = null;
 		
+	public function getDB() {
+		if( $this->DBObj == null ) {
+			include(dirname(__FILE__) . '/PersistentDAO.php');
+			$this->DBObj = new PersistentDAO;
+		}
+	
+		return $this->DBObj;
+	}
+	
 	public function getPDO() {
 		$dbCredentials = array(1);
 		$dbCredentials[ 'server' ] = '127.0.0.1';

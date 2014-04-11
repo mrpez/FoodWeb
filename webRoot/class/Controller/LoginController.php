@@ -28,31 +28,17 @@
 		}
 	
 		public function login($email, $password) {
-			$PDODB = Utility::getPDO();
+			$DB = Utility::getDB();
 			
 			// Hash the password
 			$password = Utility::hashPassword($password);
+			
+			$qryLogin = $DB->verifyLogin($password, $email);
 						
-			$query = $PDODB->prepare("SELECT U.id
-									  FROM users U
-									  INNER JOIN user_passwords UP
-										ON U.id = UP.user_id
-										AND UP.password = :password
-									  WHERE email = :email;");
-			$query->bindParam(':password', $password);
-			$query->bindParam(':email', $email);
-			
-			if( !$query->execute() ) {
-				Utility::throwError($query->errorInfo());
-				return false;
-			}
-			
-			$qryLogin = $query->fetchAll();
-			
 			// Successful login, create user session
-			if( count($qryLogin) ) {
+			if( $qryLogin !== false ) {
 				// Save their user index
-				$this->setUserIndex($qryLogin[0]['id']);
+				$this->setUserIndex($qryLogin);
 				$_SESSION['user_id'] = $this->getUserIndex();
 				// Set their login expiration to two weeks from now
 				setcookie('UUID', $this->hashKey($this->getUserIndex()), (time()+60*60*24*14));
@@ -70,8 +56,6 @@
 			}
 			
 			$this->setLoginStatus(false);
-			
-			session_destroy();
 		}
 	
 	}
