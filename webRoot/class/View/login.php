@@ -1,7 +1,6 @@
 <?php
 	$loginSuccess = false;	
 	
-	
 	echo '<form method="post">
 		  <h2>Login</h2>
 		  <p>

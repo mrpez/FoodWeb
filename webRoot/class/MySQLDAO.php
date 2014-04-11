@@ -10,6 +10,8 @@
 		private $DBC = null;
 		
 		public function addUser($name, $email, $password) {
+			$PDODB = $this->getPDO();
+			
 			// Add user to database
 			$query = $PDODB->prepare("INSERT INTO users
 									  (
@@ -48,9 +50,12 @@
 				Utility::throwError($query->errorInfo());
 				return false;
 			}
+			
+			return true;
 		}
 		
 		function checkEmail($email) {
+			$PDODB = $this->getPDO();
 			
 			// Check if email already exists in DB
 			$query = $PDODB->prepare("SELECT id
@@ -63,8 +68,9 @@
 			}
 			
 			// If it exists, fail
-			if( count($query->fetchAll()) )
-				return true;
+			$qryResults = $query->fetchAll();
+			if( count($qryResults) )
+				return $qryResults[0]['id'];
 				
 			return false;
 		}
@@ -86,7 +92,13 @@
 				return false;
 			}
 			
-			return $query->fetchAll();
+			$qryResults = $query->fetchAll();
+			
+			if( count($qryResults) ) {
+				return $qryResults[0]['id'];
+			}
+			
+			return false;
 		}
 		
 	}

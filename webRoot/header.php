@@ -66,6 +66,7 @@
 		</div>
 		<span id="logoSubtext">Order Fast. Eat Well. FoodWeb.</span>
 		<div id="headerControls">
+			<a href="/site-settings.fw">Site Settings</a> |
 			<?php
 				if( $LoginController->getLoginStatus() )
 					echo '<a href="/logout.fw">Logout</a>';

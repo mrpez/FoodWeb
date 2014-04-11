@@ -6,8 +6,17 @@ class Utility
 		
 	public function getDB() {
 		if( $this->DBObj == null ) {
-			include(dirname(__FILE__) . '/PersistentDAO.php');
-			$this->DBObj = new PersistentDAO;
+			if( array_key_exists('db_type', $_COOKIE)
+				&& $_COOKIE['db_type'] == 'persistent' )
+			{
+				if( !class_exists('PersistentDAO') )
+					include(dirname(__FILE__) . '/PersistentDAO.php');
+				$this->DBObj = new PersistentDAO;
+			} else {
+				if( !class_exists('MySQLDAO') )
+					include(dirname(__FILE__) . '/MySQLDAO.php');
+				$this->DBObj = new MySQLDAO;			
+			}
 		}
 	
 		return $this->DBObj;
