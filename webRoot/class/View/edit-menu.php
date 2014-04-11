@@ -1,4 +1,9 @@
 <script type="text/javascript">
+	window.onload = function() {
+		$.ajax({
+			
+		});
+	};
 </script>
 <style type="text/css">
 	div#menuLeftPane {
