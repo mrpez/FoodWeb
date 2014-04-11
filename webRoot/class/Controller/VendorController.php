@@ -35,7 +35,7 @@
 			return true;
 		}
 		
-		public function add_hours($day, $opening_time, $closing_time, $vendor_id = $this->getVendorid()){
+		public function add_hours($day, $opening_time, $closing_time, $vendor_id){
 			$PDODB = Utility::getPDO();
 			//fix this below! Not putting data correctly into database
 			$query = $PDODB->prepare("INSERT INTO vendors
