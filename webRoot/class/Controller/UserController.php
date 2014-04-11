@@ -65,13 +65,10 @@
 			$message  = " Your reset verification key is " . $resetkey . ". Click link <a href=\"https://www.foodweb/loginreset.fw?resetKey=" . $resetkey . "\">here</a> to reset id.";
 			mail($_POST['email'], $subject ,  $message);
 		}
-		//-----------------------------------
-	
 		
 		public function hashPassword($password) {
 			return md5('asdfasd23@#@#SDAF' . $password . '232ssdds**&^^');
 		}
 		
 	}
-	
 ?>
