@@ -70,8 +70,33 @@
 			return md5('asdfasd23@#@#SDAF' . $password . '232ssdds**&^^');
 		}
 		
-		public function editUserSettings{
+		public function editUserSettings($userIndex ,$visname, $adrl1, $city, $state){
+			$PDODB = Utility::getPDO();
 			
+			$query = $PDODB->prepare("INSERT INTO user_settings
+										 (user_id,
+										 visible_name,
+										 address_line_one,
+										 city,
+										 state
+										 )
+										 VALUES
+										 (:user_id,
+										 :visiblename,
+										 :address_line_one,
+										 :city,
+										 :state
+										 )");
+			$query->bindParam(':user_id', $userIndex);
+			$query->bindParam(':visiblename', $visname);
+			$query->bindParam(':address_line_one', $adrl1);
+			$query->bindParam(':city', $city);
+			$query->bindParam(':state', $state);
+			
+			if(!$query->execute()) {
+					Utility::throwError($query->errorInfo());
+					return false;
+			}
 		}
 		
 	}
