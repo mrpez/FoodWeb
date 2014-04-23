@@ -35,9 +35,12 @@
 			return true;
 		}
 		
-		public function add_hours($day, $opening_time, $closing_time, $vendor_id){
+		public function add_hours($day, $opening_time, $closing_time, $vendor_id = NULL){
+			if($vendor_id == NULL){
+				$this->getVendorid();
+				}
 			$PDODB = Utility::getPDO();
-			$query = $PDODB->prepare("INSERT INTO vendors
+			$query = $PDODB->prepare("INSERT INTO vendor_hours
 									  (
 										day_of_week
 										, opening_time
