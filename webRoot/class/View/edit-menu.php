@@ -1,7 +1,18 @@
 <script type="text/javascript">
 	window.onload = function() {
 		$.ajax({
-			
+			url:'/ajax.php'
+			, type:'post'
+			, data: {
+				'method':'getMenu'
+			}
+			, dataType:'json'
+			, success:function(data) {
+				alert('Test');
+			}
+			, error:function() {
+				alert('Error loading data.');
+			}
 		});
 	};
 </script>
