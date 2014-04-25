@@ -91,10 +91,12 @@
 								id integer auto_increment not null primary key
 								, menu_id integer
 								, item_id integer
-								, item_type integer
+								, category_id integer
 								, left_pointer integer
 								, right_pointer integer
 								, Foreign Key (menu_id) references menus(id)
+								, Foreign Key (item_id) references menu_items(id)
+								, Foreign Key (category_id) references menu_categories(id)
 							  )");
 	if(!$query->execute())
 		var_dump($query->errorInfo());

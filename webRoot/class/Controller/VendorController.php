@@ -6,6 +6,55 @@
 	}
 	
 	class VendorController extends Vendor {
+	
+		public function __construct() {
+			$DB = Utility::getDB();
+			
+			if( !class_exists('LoginController') )
+				include(dirname(__FILE__) . '/LoginController.php');
+			if( !isSet($LoginController) )
+				$LoginController = new LoginController;
+			
+			$user_id = $LoginController->getUserIndex();
+			if( $user_id !== false ) {
+				$result = $DB->checkIfUserIsVendor($user_id);
+				if( $result !== false ) {
+					$this->setVendorId($result);
+				}
+			}
+		}
+		
+		public function addMenu($menuName, $vendorId = null) {
+			if( $vendorId == null ) {
+				// Get our vendor id
+				if( $vendorId == null ) {
+					$vendorId = $this->getVendorId();
+					if( $vendorId === false ) {
+						return false;
+					}
+				}
+				
+				// Get our DAO
+				$DB = Utility::getDB();
+				
+				return $DB->addMenu($menuName, $vendorId);
+			}
+		}
+		
+		public function getMenus() {
+			$DB = Utility::getDB();
+			
+			return $DB->getVendorMenus($this->getVendorId());			
+		}
+		
+		public function populateVendorName() {
+			if( $this->isVendor() ) {
+				$DB = Utility::getDB();
+				$vendorName = $DB->getVendorName($this->getVendorId());
+				$this->setVendorName($vendorName);
+			}
+			return false;
+		}
 		
 		public function promoteUserToVendor($user_id, $vendor_name) {
 			$PDODB = Utility::getPDO();
@@ -28,10 +77,6 @@
 				return false;
 			}
 			
-			return true;
-		}
-		
-		public function isVendor() {
 			return true;
 		}
 		

@@ -6,6 +6,22 @@
 	}
 	
 	class MenuController extends Menu {
+	
+		public function __construct($menu_id = null) {
+			if( $menu_id == null )
+				throw('No Menu Id');
+				
+			$this->setMenuId($menu_id);
+		}
+		
+		public function addMenuCategory($parent_left_pointer, $category_name, $menu_id = null) {
+			$DB = Utility::getDB();
+			
+			if($menu_id == null)
+				$menu_id = $this->getMenuId();
+			
+			return $DB->addMenuCategory($menu_id, $parent_left_pointer, $category_name);
+		}
 		
 		public function getMenu($vendorId = null) {
 			if( $vendorId == null ) {
