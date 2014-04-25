@@ -62,7 +62,6 @@ class Utility
 		return $PDODB;
 	}
 	
-	
 	public function throwError($details) {
 		echo '<pre>
 				' . var_dump($details) . '
