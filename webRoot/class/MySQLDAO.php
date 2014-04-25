@@ -101,12 +101,15 @@
 			return false;
 		}
 		/*
-		public function currentHours() {
+		public function currentHours($vendorid) {
 			$PDODB = $this->getPDO();
+			$query->bindParam(':vendorid', $vendorid);
 		
 			$query = $PDODB->prepare("SELECT day_of_week
+											, opening_time
+											, closing_time
 									  FROM vendor_hours
-									  WHERE vendor_id = ;");
+									  WHERE vendor_id = vendorid;");
 			
 			if( !$query->execute() ) {
 				Utility::throwError($query->errorInfo());
@@ -122,6 +125,7 @@
 			return false;
 		}
 		*/
+		
 	}
 
 ?>
