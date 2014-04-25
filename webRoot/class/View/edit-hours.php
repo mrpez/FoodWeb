@@ -30,7 +30,7 @@ if( $showForm == true) {
 				</table>
 			  </form>';
 		echo '<p>Here are your current hours:</p>';
-		
+			
 	} else {
 		echo '<p>Thank you for changing your hours! Please continue.</p>';
 	}
