@@ -15,12 +15,7 @@
 		//send item information to the menu
 		public function sendItemstoMenu(){
 			return $this->itemName;
-		}
-		
-
-		
-		
-		
+		}	
 	}
 
 ?>

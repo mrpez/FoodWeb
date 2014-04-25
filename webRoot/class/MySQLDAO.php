@@ -101,6 +101,19 @@
 			return false;
 		}
 		
+		public function addTrayItem($tray_id, $item_id, $quantity){
+
+		}
+		public function removeTrayItem($tray_item_id){
+		
+		}
+		public function emptyTrayItem($tray_id){
+		
+		}
+		public function updateTray($tray_id){
+		
+		}
+		
 	}
 
 ?>

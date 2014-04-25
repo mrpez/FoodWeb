@@ -111,6 +111,28 @@
 	if(!$query->execute())
 		var_dump($query->errorInfo());
 	
+	$query= $dbCon->prepare("CREATE TABLE trays
+							(
+							id integer auto_increment not null primary key
+							, user_id intger
+							,Foreign Key (user_id) references users(id)							
+							 )");
+							
+	if(!$query->execute())
+		var_dump($query->errorInfo());
+	
+	$query= $dbCon->prepare("CREATE TABLE tray_items
+							(
+							id integer auto_increment not null primary key
+							, item_id integer
+							, menu_id integer
+							, quantity integer
+							, Foreign Key (item_id) references menu_items(id)
+							, Foreign Key (menu_id) references menus(id)
+							 )");
+							
+	if(!$query->execute())
+		var_dump($query->errorInfo());
 	
 	
 		
