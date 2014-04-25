@@ -1,4 +1,9 @@
 <?php
+	if( !class_exists('VendorController') ) {
+		include(dirname(__FILE__) . '/../Controller/VendorController.php');
+		$VendorController = new VendorController;
+	}
+	
 	$errorString = '';
 	$showForm = true;
 	var_dump($_POST);

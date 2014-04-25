@@ -59,7 +59,7 @@
 			
 			// Check if email already exists in DB
 			$query = $PDODB->prepare("SELECT id
-									  FROM users
+									  FROM users 
 									  WHERE email = :email;");
 			$query->bindParam(':email', $email);
 			if(!$query->execute()) {
@@ -100,7 +100,28 @@
 			
 			return false;
 		}
+		/*
+		public function currentHours() {
+			$PDODB = $this->getPDO();
 		
+			$query = $PDODB->prepare("SELECT day_of_week
+									  FROM vendor_hours
+									  WHERE vendor_id = ;");
+			
+			if( !$query->execute() ) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			$qryResults = $query->fetchAll();
+			
+			if( count($qryResults) ) {
+				return $qryResults[0]['id'];
+			}
+			
+			return false;
+		}
+		*/
 	}
 
 ?>
