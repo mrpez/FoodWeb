@@ -20,6 +20,22 @@
 			break;
 		}
 		
+		case 'addProduct': {
+			$arrRet = array();
+			if( !class_exists('MenuController') ) {
+				include(dirname(__FILE__) . '/class/Controller/MenuController.php');
+				$MenuController = new MenuController($_POST['menuId']);
+			}
+			$ret = $MenuController->addProduct($_POST['menuId'], $_POST['lastElementLeftPointer']);
+			
+			$arrRet['returnStatus'] = (($ret === false) ? 1 : 0);
+			$arrRet['product_id'] = $ret;
+			$arrRet['returnString'] = '';
+			echo json_encode($arrRet);
+			
+			break;
+		}
+		
 		case 'getMenu': {
 			$arrRet = array();
 			if( !class_exists('VendorController') ) {

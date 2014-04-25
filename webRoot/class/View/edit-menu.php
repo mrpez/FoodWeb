@@ -152,11 +152,17 @@
 				menuList.push(');">Add Product</a>');
 				menuList.push('<ul id="menuListing">');
 				for(var i = 0; i < data.menuElements.length; i++) {
-					menuList.push('<li onclick="menu.expandCategory(');
-					menuList.push(menuId);
-					menuList.push(', ');
-					menuList.push(data.menuElements[i].left_pointer);
-					menuList.push(');">');
+					if( data.menuElements[i].item_type == 0 ) {
+						menuList.push('<li onclick="menu.expandCategory(');
+						menuList.push(menuId);
+						menuList.push(', ');
+						menuList.push(data.menuElements[i].left_pointer);
+						menuList.push(');">');
+					} else {
+						menuList.push('<li onclick="menu.openProduct(');
+						menuList.push(data.menuElements[i].item_id);
+						menuList.push(');">');					
+					}
 					menuList.push(data.menuElements[i].name);
 					menuList.push('</li>');
 				}
@@ -207,6 +213,46 @@
 			}
 		});
 		//menu.openPopup('Add Category', );
+	}
+	
+	menu.addProduct0 = function(menuId, lastElementLeftPointer) {
+		$.ajax({
+			url:'/ajax.php'
+			, type:'post'
+			, data:{
+				method:'addProduct'
+				, menuId:menuId
+				, lastElementLeftPointer:lastElementLeftPointer
+			}
+			, dataType:'json'
+			, success:function(data) {
+				if(data.returnStatus) {
+					alert(data.returnString);
+				} else {
+					menu.openProduct(data.product_id);
+				}
+			}
+			, error:function() {
+				alert('Error occured while adding product.');
+			}
+		});
+	}
+	
+	menu.openProduct = function(product_id) {
+		$.ajax({
+			url:'/template/editProduct.php'
+			, type:'get'
+			, data:{
+				productId:product_id
+			}
+			, dataType:'html'
+			, success:function(data) {
+				document.getElementById('menuRightPane').innerHTML = data;
+			}
+			, error:function() {
+				alert('An unexpected error has occured. Please try opening the product again.');
+			}
+		});
 	}
 	
 </script>

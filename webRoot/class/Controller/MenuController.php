@@ -23,6 +23,12 @@
 			return $DB->addMenuCategory($menu_id, $parent_left_pointer, $category_name);
 		}
 		
+		public function addProduct($menu_id, $parentLeftPointer) {
+			$DB = Utility::getDB();
+			
+			return $DB->addProduct($menu_id, $parentLeftPointer);			
+		}
+		
 		public function getMenu($vendorId = null) {
 			if( $vendorId == null ) {
 				throw('Error');

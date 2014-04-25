@@ -194,6 +194,79 @@
 			return true;
 		}
 		
+		public function addProduct($menu_id, $parentLeftPointer) {			
+			$PDODB = Utility::getPDO();
+			
+			$new_left_pointer = $parentLeftPointer + 1;
+			$new_right_pointer = $parentLeftPointer + 2;
+			
+			// Add Product
+			$query = $PDODB->prepare("INSERT INTO menu_items
+									  (	
+										name
+									  )
+									  VALUES
+									  (
+										'New Product'
+									  );");
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			$cat_id = $PDODB->lastInsertId();
+						
+			// Make room for the new category
+			$query = $PDODB->prepare("UPDATE menu_category_tree
+									  SET left_pointer = left_pointer + 2
+									  WHERE left_pointer > :left_pointer
+									    AND menu_id = :menu_id;");
+			$query->bindParam(':left_pointer', $parentLeftPointer);
+			$query->bindParam(':menu_id', $menu_id);
+			
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			$query = $PDODB->prepare("UPDATE menu_category_tree
+									  SET right_pointer = right_pointer + 2
+									  WHERE right_pointer > :left_pointer
+									    AND menu_id = :menu_id;");
+			$query->bindParam(':left_pointer', $parentLeftPointer);
+			$query->bindParam(':menu_id', $menu_id);
+			
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			// Add Top Level Menu Category to Tree
+			$query = $PDODB->prepare("INSERT INTO menu_category_tree
+									  (	
+										menu_id
+										, item_id
+										, left_pointer
+										, right_pointer
+									  )
+									  VALUES
+									  (
+										:menu_id
+										, :cat_id
+										, :left_pointer
+										, :right_pointer
+									  );");
+			$query->bindParam(':menu_id', $menu_id);
+			$query->bindParam(':cat_id', $cat_id);
+			$query->bindParam(':left_pointer', $new_left_pointer);
+			$query->bindParam(':right_pointer', $new_right_pointer);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			return $cat_id;
+		}
+		
 		public function checkEmail($email) {
 			$PDODB = $this->getPDO();
 			
@@ -239,41 +312,44 @@
 		public function getMenuChildren($menu_id, $element_id) {
 			$PDODB = $this->getPDO();
 			
-			$query = $PDODB->prepare("	SELECT MCT.id AS category_item_id
-														, MCT.left_pointer
-														, MCT.right_pointer
-														, MC.id AS item_id
-														, 0 AS item_type
-														, MC.name
-										FROM menu_category_tree MCT
-										INNER JOIN menu_categories MC
-											ON MCT.category_id = MC.id
-										INNER JOIN menu_category_tree SEL
-											ON SEL.left_pointer = :element_id
-											AND SEL.menu_id = :menu_id
-											AND MCT.menu_id = :menu_id
-											AND MCT.left_pointer > SEL.left_pointer
-											AND MCT.right_pointer < SEL.right_pointer
-										ORDER BY MCT.left_pointer;
+			$query = $PDODB->prepare("	SELECT *
+										FROM
+										(
+											SELECT MCT.id AS category_item_id
+															, MCT.left_pointer
+															, MCT.right_pointer
+															, MC.id AS item_id
+															, 0 AS item_type
+															, MC.name
+											FROM menu_category_tree MCT
+											INNER JOIN menu_categories MC
+												ON MCT.category_id = MC.id
+											INNER JOIN menu_category_tree SEL
+												ON SEL.left_pointer = :element_id
+												AND SEL.menu_id = :menu_id
+												AND MCT.menu_id = :menu_id
+												AND MCT.left_pointer > SEL.left_pointer
+												AND MCT.right_pointer < SEL.right_pointer
 
-										UNION
+											UNION
 
-										SELECT MCT.id AS category_item_id
-														, MCT.left_pointer
-														, MCT.right_pointer
-														, MI.id AS item_id
-														, 1 AS item_type
-														, MI.name
-										FROM menu_category_tree MCT
-										INNER JOIN menu_items MI
-											ON MCT.item_id = MI.id
-										INNER JOIN menu_category_tree SEL
-											ON SEL.left_pointer = :element_id
-											AND SEL.menu_id = :menu_id
-											AND MCT.menu_id = :menu_id
-											AND MCT.left_pointer > SEL.left_pointer
-											AND MCT.right_pointer < SEL.right_pointer
-										ORDER BY MCT.left_pointer;");
+											SELECT MCT.id AS category_item_id
+															, MCT.left_pointer
+															, MCT.right_pointer
+															, MI.id AS item_id
+															, 1 AS item_type
+															, MI.name
+											FROM menu_category_tree MCT
+											INNER JOIN menu_items MI
+												ON MCT.item_id = MI.id
+											INNER JOIN menu_category_tree SEL
+												ON SEL.left_pointer = :element_id
+												AND SEL.menu_id = :menu_id
+												AND MCT.menu_id = :menu_id
+												AND MCT.left_pointer > SEL.left_pointer
+												AND MCT.right_pointer < SEL.right_pointer
+										) Q
+										ORDER BY Q.left_pointer;");
 			$query->bindParam(':menu_id', $menu_id);
 			$query->bindParam(':element_id', $element_id);
 			if(!$query->execute()) {
