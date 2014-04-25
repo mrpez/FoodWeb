@@ -199,7 +199,8 @@
 			}
 			, dataType:'json'
 			, success:function(data) {
-				
+				eval(menu.back[menu.back.length-1]);
+				menu.back.length--;
 			}
 			, error:function() {
 				alert('A connection error has occured. Please check your connection and try again.');

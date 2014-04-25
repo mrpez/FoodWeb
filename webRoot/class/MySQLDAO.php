@@ -282,12 +282,18 @@
 			}
 			
 			$query = $query->fetchAll();
-			return $query;
+			
+			if( count($query) == 0 )
+				return $query;
+			
 			$finalResults = array();
-			for($i = 0; $i < count($query); $i++) {
-				//if( 
+			$finalResults[] = $query[0];
+			for($i = 1; $i < count($query); $i++) {
+				if( $query[$i]['left_pointer'] > $finalResults[count($finalResults)-1]['right_pointer'] )
+					$finalResults[] = $query[$i];
 			}
 			
+			return $finalResults;
 		}
 		
 		public function getVendorMenus($vendor_id) {
