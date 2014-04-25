@@ -111,7 +111,18 @@
 	if(!$query->execute())
 		var_dump($query->errorInfo());
 	
-	
+	$query = $dbCon->prepare("CREATE TABLE user_settings
+							  (
+								id integer auto_increment not null primary key
+								, user_id integer
+								, visible_name varchar(500)
+								, address_line_one varchar(500)
+								, city varchar(500)
+								, state varchar(500)
+								, Foreign Key (user_id) references users(id)
+							  )");
+	if(!$query->execute())
+		var_dump($query->errorInfo());
 	
 		
 	echo '</pre>';
