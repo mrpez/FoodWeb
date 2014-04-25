@@ -29,6 +29,8 @@ if( $showForm == true) {
 							<td colspan="2"><input type="submit" value="Submit Changes"/></td>
 				</table>
 			  </form>';
+		echo '<p>Here are your current hours:</p>';
+		
 	} else {
 		echo '<p>Thank you for changing your hours! Please continue.</p>';
 	}

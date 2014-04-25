@@ -28,6 +28,7 @@
 		}
 	
 		public function login($email, $password) {
+			//
 			$DB = Utility::getDB();
 			
 			// Hash the password

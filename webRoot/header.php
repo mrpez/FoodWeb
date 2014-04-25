@@ -8,8 +8,8 @@
 <html>
 <head>
 	<title>FoodWeb</title>
-	<!---<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<link href='http://fonts.googleapis.com/css?family=Bangers|Titan+One' rel='stylesheet' type='text/css'>--->
+	<script src="/lib/js/jquery.1.11.0.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Bangers|Titan+One' rel='stylesheet' type='text/css'>
 	<style type="text/css">
 		body {
 			padding: 0;

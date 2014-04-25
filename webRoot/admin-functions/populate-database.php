@@ -91,10 +91,12 @@
 								id integer auto_increment not null primary key
 								, menu_id integer
 								, item_id integer
-								, item_type integer
+								, category_id integer
 								, left_pointer integer
 								, right_pointer integer
 								, Foreign Key (menu_id) references menus(id)
+								, Foreign Key (item_id) references menu_items(id)
+								, Foreign Key (category_id) references menu_categories(id)
 							  )");
 	if(!$query->execute())
 		var_dump($query->errorInfo());
@@ -111,6 +113,7 @@
 	if(!$query->execute())
 		var_dump($query->errorInfo());
 	
+<<<<<<< HEAD
 	$query= $dbCon->prepare("CREATE TABLE trays
 							(
 							id integer auto_increment not null primary key
@@ -134,6 +137,20 @@
 	if(!$query->execute())
 		var_dump($query->errorInfo());
 	
+=======
+	$query = $dbCon->prepare("CREATE TABLE user_settings
+							  (
+								id integer auto_increment not null primary key
+								, user_id integer
+								, visible_name varchar(500)
+								, address_line_one varchar(500)
+								, city varchar(500)
+								, state varchar(500)
+								, Foreign Key (user_id) references users(id)
+							  )");
+	if(!$query->execute())
+		var_dump($query->errorInfo());
+>>>>>>> 6b621d55b3f61f7911e35b3d564f469041316525
 	
 		
 	echo '</pre>';
