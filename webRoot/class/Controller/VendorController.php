@@ -82,7 +82,7 @@
 		
 		public function add_hours($day, $opening_time, $closing_time, $vendor_id = NULL){
 			if($vendor_id == NULL){
-				$this->getVendorid();
+				$vendor_id = $this->getVendorid();
 				}
 				
 			$PDODB = Utility::getPDO();
@@ -112,18 +112,16 @@
 			
 			return true;
 		}
-		/*
+		
 		public function get_hours($vendor_id = NULL){
+			$DB = Utility::getDB();
 			if($vendor_id == NULL){
-				$this->getVendorid();
-				}
-				
-			$qryHours = $DB->($vendor_id);
-			if( $qryHours !== false ) {
-				return $qryHours
+				$vendor_id = $this->getVendorid();
 			}
+				
+			return $DB->getCurrentVendorHours($vendor_id);
 		}
-		*/
+		
 		
 		
 	}

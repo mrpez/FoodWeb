@@ -7,7 +7,7 @@
 	$errorString = '';
 	$showForm = true;
 	var_dump($_POST);
-	//$existing_hours = !$VendorController->get_hours();
+	$existing_hours = $VendorController->get_hours();
 	
 	if( array_key_exists('opening_time', $_POST) ) {
 

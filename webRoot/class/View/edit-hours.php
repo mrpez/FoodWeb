@@ -3,6 +3,7 @@
 if( $showForm == true) {
 		echo '<h1>Edit Hours</h1>
 			  <p>Here you can edit your business hours for each day of the week.</p>
+			  <p>Please enter them as the following form: HH:MM::SS</p>
 			  <form method="post">
 				<table class="formTable">
 				<span class="error">' . $errorString . '</span>
@@ -30,6 +31,26 @@ if( $showForm == true) {
 				</table>
 			  </form>';
 		echo '<p>Here are your current hours:</p>';
+		echo '<table>
+				<tr>
+					<th>Day</th>
+					<th>Opening Time</th>
+					<th>Closing Time</th>
+				</tr>';
+		$daysOfWeek = array('Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat');
+		for($i = 0; $i < count($existing_hours); $i++) {
+			echo '<tr>';
+			echo '<td>' . $daysOfWeek[$existing_hours[$i]['day_of_week']] . '</td>';
+			echo '<td>' . $existing_hours[$i]['opening_time'] . '</td>';
+			echo '<td>' . $existing_hours[$i]['closing_time'] . '</td>';
+			echo '</tr>';
+		}
+		echo '</table>';
+			/*
+			echo'<pre>';
+			var_dump($existing_hours);
+			echo'</pre>';
+			*/
 			
 	} else {
 		echo '<p>Thank you for changing your hours! Please continue.</p>';
