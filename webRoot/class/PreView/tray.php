@@ -4,11 +4,9 @@
 	{
 		include(dirname(__FILE__) . '/../Controller/LoginController.php');
 		$LoginController = new LoginController;
-				
-		$LoginController->login($_POST['username'], $_POST['password']);
 		
-		if( $LoginController->getLoginStatus() ) {
-			header('Location: /');
+		if(!$LoginController->getLoginStatus() ) {
+			header('Location: /login.fw');
 			die;
 		}
 		

@@ -6,10 +6,10 @@
 	}
 	class UserController extends Tray {
 	
-		public function getItems{
+		public function getItem($item_id, $quantity){
 		$DB = Utility::getDB();
-		
-		
+			
+		return $DB->getItems($this->getTrayId());
 		
 		}
 			

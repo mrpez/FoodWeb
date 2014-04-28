@@ -352,13 +352,27 @@
 			
 			return false;
 		}
-		/*
+
 		public function currentHours() {
 			$PDODB = $this->getPDO();
-		
-<<<<<<< HEAD
-		public function addTrayItem($tray_id, $item_id, $quantity){
+		}
 
+		public function getTrayItem($tray_id){
+			$PDODB = $this->getPDO();
+			
+			$query = $PDODB->prepare("SELET id
+											 , name
+									  FROM tray_items TI
+									  INNER JOIN trays TRA
+										ON TI.tray_id = TRA.id
+										AND TRA.user_id = :user_id;");
+			$query->bindParam(':user_', $vendor_id);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			return $query->fetchAll();
 		}
 		public function removeTrayItem($tray_item_id){
 		
@@ -370,8 +384,8 @@
 		
 		}
 		
-=======
-			$query = $PDODB->prepare("SELECT day_of_week
+
+		/*$query = $PDODB->prepare("SELECT day_of_week
 									  FROM vendor_hours
 									  WHERE vendor_id = ;");
 			
@@ -387,9 +401,7 @@
 			}
 			
 			return false;
-		}
 		*/
->>>>>>> 6b621d55b3f61f7911e35b3d564f469041316525
 	}
 
 ?>
