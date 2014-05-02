@@ -435,7 +435,6 @@
 			return false;
 		}
 		
-		
 		public function getTrayItem($tray_id){
 			$PDODB = $this->getPDO();
 			
@@ -462,29 +461,21 @@
 		public function updateTray($tray_id){
 		
 		}
-		
-		public function currentHours($vendorid) {
+				
+		public function getCurrentVendorHours($vendorid) {
 			$PDODB = $this->getPDO();
-			$query->bindParam(':vendorid', $vendorid);
-		
 			$query = $PDODB->prepare("SELECT day_of_week
 											, opening_time
 											, closing_time
 									  FROM vendor_hours
-									  WHERE vendor_id = vendorid;");
-			
+									  WHERE vendor_id = :vendorid;");
+			$query->bindParam(':vendorid', $vendorid);
 			if( !$query->execute() ) {
 				Utility::throwError($query->errorInfo());
 				return false;
 			}
 			
-			$qryResults = $query->fetchAll();
-			
-			if( count($qryResults) ) {
-				return $qryResults[0]['id'];
-			}
-			
-			return false;
+			return $query->fetchAll();
 		}
 	}
 
