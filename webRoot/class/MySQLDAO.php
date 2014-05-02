@@ -434,7 +434,35 @@
 			
 			return false;
 		}
-		/*
+		
+		
+		public function getTrayItem($tray_id){
+			$PDODB = $this->getPDO();
+			
+			$query = $PDODB->prepare("SELET id
+											 , name
+									  FROM tray_items TI
+									  INNER JOIN trays TRA
+										ON TI.tray_id = TRA.id
+										AND TRA.user_id = :user_id;");
+			$query->bindParam(':user_', $vendor_id);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			return $query->fetchAll();
+		}
+		public function removeTrayItem($tray_item_id){
+		
+		}
+		public function emptyTrayItem($tray_id){
+		
+		}
+		public function updateTray($tray_id){
+		
+		}
+		
 		public function currentHours($vendorid) {
 			$PDODB = $this->getPDO();
 			$query->bindParam(':vendorid', $vendorid);
@@ -458,8 +486,6 @@
 			
 			return false;
 		}
-		*/
-		
 	}
 
 ?>

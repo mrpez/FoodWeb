@@ -17,6 +17,10 @@
 			$taxRate = 0.00;
 			$netTotal = 0.00;
 		}
+		public function getTrayId(){
+		
+		return $this->tray_id;
+		}
 		
 		public function addOrder($x) {
 			$this->Orders[] = $x;

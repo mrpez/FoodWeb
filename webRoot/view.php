@@ -12,8 +12,8 @@
 		}
 	}
 	
-	if( !array_key_exists('view', $_GET) ) {
-		$_GET['view'] = '';
+	if( !array_key_exists('view', $_GET) || $_GET['view']=='') {
+		$_GET['view'] = 'home';
 	}	
 	
 	if( file_exists(dirname(__FILE__) . '/class/View/' . $_GET['view'] . '.php') ) {

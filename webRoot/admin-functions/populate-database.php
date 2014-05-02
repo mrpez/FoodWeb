@@ -113,6 +113,30 @@
 	if(!$query->execute())
 		var_dump($query->errorInfo());
 	
+	$query= $dbCon->prepare("CREATE TABLE trays
+							(
+							id integer auto_increment not null primary key
+							, user_id intger
+							,Foreign Key (user_id) references users(id)							
+							 )");
+							
+	if(!$query->execute())
+		var_dump($query->errorInfo());
+	
+	$query= $dbCon->prepare("CREATE TABLE tray_items
+							(
+							id integer auto_increment not null primary key
+							, item_id integer
+							, tray_id integer
+							, quantity integer
+							, Foreign Key (item_id) references menu_items(id)
+							, Foreign Key (tray_id) references trays(id)
+							 )");
+							
+	if(!$query->execute())
+		var_dump($query->errorInfo());
+	
+
 	$query = $dbCon->prepare("CREATE TABLE user_settings
 							  (
 								id integer auto_increment not null primary key
@@ -125,6 +149,7 @@
 							  )");
 	if(!$query->execute())
 		var_dump($query->errorInfo());
+
 	
 		
 	echo '</pre>';
