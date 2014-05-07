@@ -113,16 +113,7 @@
 			return true;
 		}
 		
-		public function get_hours($vendor_id = NULL){
-			$DB = Utility::getDB();
-			if($vendor_id == NULL){
-				$vendor_id = $this->getVendorid();
-			}
-				
-			return $DB->getCurrentVendorHours($vendor_id);
-		}
-		
-		
+			
 		
 	}
 	
