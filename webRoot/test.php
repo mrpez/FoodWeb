@@ -1,9 +1,10 @@
 <?php
-	echo '<pre>';
-	var_dump($_GET);
-	die;
+
+	include(dirname(__FILE__) . '/class/Controller/SearchController.php');
+	$SearchController = new SearchController;
 	
-	var_dump($_GET);
-	var_dump($_POST);
+	echo '<pre>';
+	var_dump($SearchController->getNearbyZipCodes('17403', '5'));
+	echo '</pre>';
 	
 ?>
