@@ -116,7 +116,7 @@
 	$query= $dbCon->prepare("CREATE TABLE trays
 							(
 							id integer auto_increment not null primary key
-							, user_id intger
+							, user_id integer
 							,Foreign Key (user_id) references users(id)							
 							 )");
 							
