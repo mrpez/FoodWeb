@@ -11,8 +11,8 @@
 	
 	if( array_key_exists('address', $_POST) ) {
 
-		if( strlen($_POST['address']) == 0 )
-			$errorString .= 'Please provide your address.<br />';
+		if( strlen($_POST['address']) < 7 ||  strlen($_POST['address']) > 100)
+			$errorString .= 'Please provide your address in a valid format: #StreetNumber StreetName Identifier.<br />';
 			
 		if( strlen($_POST['zipcode']) != 5)
 			$errorString .= 'Please provide your zipcode it the correct format.<br />';
