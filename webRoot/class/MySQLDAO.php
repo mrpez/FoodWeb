@@ -477,6 +477,31 @@
 			
 			return $query->fetchAll();
 		}
+		
+		public function getProductInfo($productId) {
+			$PDODB = Utility::getPDO();
+			
+			$q = $PDODB->prepare("SELECT id
+										 , price
+										 , name
+								  FROM menu_items
+								  WHERE id = :id;");
+			$q->bindParam(':id', $productId);
+			
+			if( !$q->execute() ) {
+				Utility::throwError($q->errorInfo());
+				return false;
+			}
+			
+			$q = $q->fetchAll();
+			
+			if( count($q) == 0 ) {
+				return false;
+			}
+			
+			return $q[0];
+		}
+		
 	}
 
 ?>
