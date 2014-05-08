@@ -1,7 +1,5 @@
 <?php
 
-include("header.php");
-
 echo 'This is the FoodWeb Homepage. Login to start!<br /><br />
 	  <h3>Actions</h3>
 	  <ul>
@@ -9,10 +7,5 @@ echo 'This is the FoodWeb Homepage. Login to start!<br /><br />
 		<li><a href="/vendor-home.fw">Vendor Home</a></li>
 		<li><a href="/vendor-signup.fw">Become a Vendor</a></li>
 	  </ul>';
-	  
-	 
-
-
-include("footer.php");
 
 ?>
