@@ -3,4 +3,4 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^(.*).(foodweb|fw|html) /view.php?view=$1 [L]
+RewriteRule ^(.*).(foodweb|fw|html) /index.php?view=$1 [L]

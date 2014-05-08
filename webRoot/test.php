@@ -4,7 +4,15 @@
 	$SearchController = new SearchController;
 	
 	echo '<pre>';
-	var_dump($SearchController->getNearbyZipCodes('17403', '5'));
-	echo '</pre>';
+	$tester =($SearchController->getNearbyZipCodes('17403', '5'));
 	
+	$detailedarray = $tester->{'zip_codes'};
+	$zips = array();
+	
+	for($i = 0; $i < count($detailedarray); $i++) 
+	{
+		$zips[] =  $detailedarray[$i]->{'zip_code'};
+	}
+	var_dump($zips);
+	echo '</pre>';
 ?>

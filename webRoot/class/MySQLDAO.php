@@ -477,6 +477,20 @@
 			
 			return $query->fetchAll();
 		}
+		public function getCurrentVendorStoreLocations($vendorid) {
+			$PDODB = $this->getPDO();
+			$query = $PDODB->prepare("SELECT address
+											, zipcode
+									  FROM vendor_locations
+									  WHERE vendor_id = :vendorid;");
+			$query->bindParam(':vendorid', $vendorid);
+			if( !$query->execute() ) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			return $query->fetchAll();
+		}
 		
 		public function getProductInfo($productId) {
 			$PDODB = Utility::getPDO();
