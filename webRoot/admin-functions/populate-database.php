@@ -46,6 +46,17 @@
 							  )");
 	if(!$query->execute())
 		var_dump($query->errorInfo());
+		
+	$query = $dbCon->prepare("CREATE TABLE vendor_locations
+							  (
+								id integer auto_increment not null primary key
+								, vendor_id integer
+								, address varchar(500)
+								, zipcode integer
+								, Foreign Key (vendor_id) references vendors(id)
+							  )");
+	if(!$query->execute())
+		var_dump($query->errorInfo());
 	
 	$query = $dbCon->prepare("CREATE TABLE menus
 							  (
@@ -116,7 +127,7 @@
 	$query= $dbCon->prepare("CREATE TABLE trays
 							(
 							id integer auto_increment not null primary key
-							, user_id intger
+							, user_id integer
 							,Foreign Key (user_id) references users(id)							
 							 )");
 							

@@ -112,8 +112,54 @@
 			
 			return true;
 		}
-		
+		public function add_store_locations($address, $zipcode, $vendor_id = NULL){
+			if($vendor_id == NULL){
+				$vendor_id = $this->getVendorid();
+				}
+				
+			$PDODB = Utility::getPDO();
+			$query = $PDODB->prepare("INSERT INTO vendor_locations
+									  (
+										address
+										, zipcode
+										, vendor_id
+									  )
+									  VALUES
+									  (
+										:address
+										, :zipcode
+										, :vendor_id
+									  );");
+			$query->bindParam(':address', $address);
+			$query->bindParam(':zipcode', $zipcode);
+			$query->bindParam(':vendor_id', $vendor_id);
 			
+			if( !$query->execute() ) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			return true;
+		}
+
+		public function get_hours($vendor_id = NULL){
+			$DB = Utility::getDB();
+			if($vendor_id == NULL){
+				$vendor_id = $this->getVendorid();
+			}
+				
+			return $DB->getCurrentVendorHours($vendor_id);
+		}
+		
+		public function get_store_locations($vendor_id = NULL){
+			$DB = Utility::getDB();
+			if($vendor_id == NULL){
+				$vendor_id = $this->getVendorid();
+			}
+				
+			return $DB->getCurrentVendorStoreLocations($vendor_id);
+		}
+
 		
 	}
 	

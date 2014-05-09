@@ -1,9 +1,18 @@
 <?php
+
+	include(dirname(__FILE__) . '/class/Controller/SearchController.php');
+	$SearchController = new SearchController;
+	
 	echo '<pre>';
-	var_dump($_GET);
-	die;
+	$tester =($SearchController->getNearbyZipCodes('17403', '5'));
 	
-	var_dump($_GET);
-	var_dump($_POST);
+	$detailedarray = $tester->{'zip_codes'};
+	$zips = array();
 	
+	for($i = 0; $i < count($detailedarray); $i++) 
+	{
+		$zips[] =  $detailedarray[$i]->{'zip_code'};
+	}
+	var_dump($zips);
+	echo '</pre>';
 ?>

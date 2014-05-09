@@ -6,8 +6,8 @@
 			<li>
 				Vendor Settings
 				<ul>
-					<li>Hours</li>
-					<li>Location</li>
+					<li>Hours DONE</li>
+					<li>Location DONE</li>
 					<li>Categories/Tags</li>
 					<li>Menu</li>
 				</ul>			
