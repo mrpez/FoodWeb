@@ -241,6 +241,7 @@
 					alert(data.returnString);
 				} else {
 					menu.openProduct(data.product_id);
+					menu.refreshTree();
 				}
 			}
 			, error:function() {
