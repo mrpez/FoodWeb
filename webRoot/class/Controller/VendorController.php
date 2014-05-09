@@ -141,7 +141,7 @@
 			
 			return true;
 		}
-		
+
 		public function get_hours($vendor_id = NULL){
 			$DB = Utility::getDB();
 			if($vendor_id == NULL){
@@ -159,7 +159,7 @@
 				
 			return $DB->getCurrentVendorStoreLocations($vendor_id);
 		}
-		
+
 		
 	}
 	
