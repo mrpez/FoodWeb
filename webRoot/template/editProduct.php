@@ -9,22 +9,24 @@
 	
 	$thisProduct = new ProductController($_GET['productId']);
 ?>
+<input type="hidden" id="editProductId" value="<?php echo $thisProduct->getProductId(); ?>"/>
 <h2>Edit Product</h2>
 <table>
 	<tr>
 		<td>Name</td>
-		<td><input type="text" id="editProductName" value="<?php echo $thisProduct->getName(); ?>"/></td>
+		<td><input type="text" id="editProductName" style="width: 100%;" value="<?php echo $thisProduct->getName(); ?>"/></td>
 	</tr>
 	<tr>
 		<td>Price</td>
-		<td><input type="text" id="editProductPrice" value="<?php echo $thisProduct->getPrice(); ?>"/></td>
+		<td><input type="text" id="editProductPrice" style="width: 100%;" value="<?php echo $thisProduct->getPrice(); ?>"/></td>
 	</tr>
 	<tr>
 		<td>Description</td>
-		<td><textarea id="editProductDescription"><?php echo $thisProduct->getDescription(); ?></textarea></td>
+		<td style="width: 100%;"><textarea id="editProductDescription" style="width: 100%; height: 50%;"><?php echo $thisProduct->getDescription(); ?></textarea></td>
 	<tr>
 		<td colspan="2">
-			<button onclick="menu.saveProduct();">Save Changes to Product</button>
+			<button onclick="menu.saveProduct();" id="editProductSaveButton">Save Changes to Product</button>
+			<span id="editProductSavedIndicator" style="display:none; color: green; font-weight:bold;">Saved!</span>
 		</td>
 	</tr>
 </table>

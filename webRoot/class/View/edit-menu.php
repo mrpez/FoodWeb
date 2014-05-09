@@ -124,6 +124,18 @@
 		menu.back = oldBack;
 	}
 	
+	menu.refreshTree = function() {		
+		eval(menu.back[menu.back.length-1]);
+		
+		var oldBack = ['menu.getMenuList();'];
+		var lastEle = '';
+		for(var i = 1; i < (menu.back.length-1); i++) {
+			oldBack.push(menu.back[i]);
+		}
+		menu.back = null;
+		menu.back = oldBack;
+	}
+	
 	menu.expandCategory = function(menuId, lastElementLeftPointer) {
 		$.ajax({
 			url:'ajax.php'
@@ -135,7 +147,6 @@
 			}
 			, dataType:'json'
 			, success:function(data) {
-				console.dir(data);
 				var menuList = [];
 				menuList.push('<a href="javascript:void(0);" onclick="');
 				menuList.push(menu.nextBack('menu.expandCategory(' + menuId + ', ' + lastElementLeftPointer + ');'));
@@ -253,6 +264,45 @@
 				alert('An unexpected error has occured. Please try opening the product again.');
 			}
 		});
+	}
+	
+	menu.saveProduct = function() {
+		var button = [];
+		if( button = document.getElementById('editProductSaveButton') ) {
+			button.disabled = true;
+		}
+		$.ajax({
+			url:'/ajax.php'
+			, type:'post'
+			, data:{
+				method:'updateProduct'
+				, item_id:document.getElementById('editProductId').value
+				, name:document.getElementById('editProductName').value
+				, price:document.getElementById('editProductPrice').value
+				, description:document.getElementById('editProductDescription').value
+			}
+			, dataType:'json'
+			, success:function(data) {
+				button.disabled = false;
+				menu.toggleSaved();
+				menu.refreshTree();
+			}
+			, error:function() {
+				button.disabled = false;
+				alert('A error occured while saving product info.');
+			}
+		});
+	}
+	
+	menu.toggleSaved = function() {
+		if( saved = document.getElementById('editProductSavedIndicator') ) {
+			saved.style.display = '';
+			setTimeout(function() {
+				if( saved = document.getElementById('editProductSavedIndicator') ) {
+					saved.style.display = 'none';
+				}
+			}, 5000);
+		}
 	}
 	
 </script>

@@ -36,6 +36,22 @@
 			break;
 		}
 		
+		case 'updateProduct': {
+			$arrRet = array();
+			if( !class_exists('ProductController') ) {
+				include(dirname(__FILE__) . '/class/Controller/ProductController.php');
+				$ProductController = new ProductController($_POST['item_id']);
+			}
+			$ret = $ProductController->updateProduct($_POST['item_id'], $_POST['name'], $_POST['price'] ,$_POST['description']);
+			
+			$arrRet['returnStatus'] = (($ret === false) ? 1 : 0);
+			$arrRet['product_id'] = $_POST['item_id'];
+			$arrRet['returnString'] = '';
+			echo json_encode($arrRet);
+			
+			break;
+		}
+		
 		case 'getMenu': {
 			$arrRet = array();
 			if( !class_exists('VendorController') ) {

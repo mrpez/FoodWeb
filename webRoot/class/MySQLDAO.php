@@ -409,6 +409,26 @@
 			return false;
 		}
 		
+		public function updateProduct($item_id, $name, $price, $description) {
+			$PDODB = $this->getPDO();
+			
+			$q = $PDODB->prepare("UPDATE menu_items
+								  SET name = :name
+									  , price = :price
+									  , description = :description
+								  WHERE id = :item_id;");
+			$q->bindParam(':name', $name);
+			$q->bindParam(':price', $price);
+			$q->bindParam(':description', $description);
+			$q->bindParam(':item_id', $item_id);			
+			if( !$q->execute() ) {
+				Utility::throwError($q->errorInfo());
+				return false;
+			}
+			
+			return true;
+		}
+		
 		public function verifyLogin($password, $email) {
 			$PDODB = $this->getPDO();
 		
@@ -498,6 +518,7 @@
 			$q = $PDODB->prepare("SELECT id
 										 , price
 										 , name
+										 , description
 								  FROM menu_items
 								  WHERE id = :id;");
 			$q->bindParam(':id', $productId);
