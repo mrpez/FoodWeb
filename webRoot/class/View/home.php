@@ -8,24 +8,12 @@
 	$showForm = true;
 	//var_dump($_POST);
 	
-	if( array_key_exists('zipcode', $_POST) ) {
-
-		if( strlen($_POST['zipcode']) != 5)
-			$errorString .= 'Please provide your zipcode it the correct format.<br />';
-			
-		if( strlen($errorString) == 0 ) {  
-			!$SearchController->getNearbyZipCodes($_POST['zipcode'], $_POST['radiusofsearch']);
-			$showForm = false;
-			
-		}
-	}
 	//action = "/search-results.fw"
 	if( $showForm == true) {
 		echo '<h1>Enter Your Zipcode</h1>
 			  <p>You can see local vendors in a preset radius.</p>
 			  <p>Please enter below:</p>
-			  <form method="post">
-				<action = "/search-results.fw">
+			  <form method="get" action = "/search-results.fw">
 				<table class="formTable">
 				<span class="error">' . $errorString . '</span>
 					<tr>
