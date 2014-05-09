@@ -6,12 +6,12 @@
 	}
 	
 	class SearchController extends Search {
-		
+
 		public function getNearbyZipCodes($inputZip, $radiusInMiles) {
 			$response = fopen('http://zipcodedistanceapi.redline13.com/rest/B2VUEeOhL6PMqtKKi6MSJVTPhnfVWdIygDsUShcEn1qOvazNhlG0gzQxX6sUjbsz/radius.json/' . $inputZip . '/' . $radiusInMiles . '/mile', 'r');
 			$response = stream_get_contents($response);
 			$response = json_decode($response);
-			return $response;
+			return $responce;
 		}
 		
 	}
