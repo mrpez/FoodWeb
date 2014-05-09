@@ -34,6 +34,7 @@
 			
 			$q = $PDODB->prepare("SELECT V.name
 										 , V.id AS vendor_id
+										 , VL.address
 								  FROM vendor_locations VL
 								  INNER JOIN vendors V
 									ON VL.vendor_id = V.id
