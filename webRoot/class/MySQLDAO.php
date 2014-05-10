@@ -455,6 +455,33 @@
 			return false;
 		}
 		
+		public function addTrayItem($user_id,$item_id, $tray_id, $quantity){
+			$PDODB = $this->getPDO();
+			
+			$query = $PDODB->prepare("INSERT INTO tray_items
+									  (
+										id,
+										item_id,
+										tray_id,
+										quantity
+									  )
+									  VALUES
+									  (
+										:user_id
+										, :tray_id
+										, :tray_id
+										, :quantity
+									  )");
+			$query->bindParam(':user_id', $user_id);
+			$query->bindParam(':item_id', $item_id);
+			$query->bindParam(':tray_id', $tray_id);
+			$query->bindParam(':quantity', $quantity);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+		}
+		
 		public function getTrayItem($tray_id){
 			$PDODB = $this->getPDO();
 			
@@ -464,7 +491,7 @@
 									  INNER JOIN trays TRA
 										ON TI.tray_id = TRA.id
 										AND TRA.user_id = :user_id;");
-			$query->bindParam(':user_', $vendor_id);
+			$query->bindParam(':user_id', $vendor_id);
 			if(!$query->execute()) {
 				Utility::throwError($query->errorInfo());
 				return false;
@@ -473,11 +500,29 @@
 			return $query->fetchAll();
 		}
 		public function removeTrayItem($tray_item_id){
+			$PDODB = $this->getPDO();
 		
+			$query = $PDODB->prepare("DELETE FROM tray_items
+										WHERE item_id  = :item;");
+			$query->bindParam(':item', $tray_item_id);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
 		}
-		public function emptyTrayItem($tray_id){
+
+		public function emptyTray($tray_id){
+			$PDODB = $this->getPDO();
+			
+			$query = $PDODB->prepare("DELETE FROM trays_items
+										WHERE tray_id = :tray_id;");
+			$query->bindParam(':tray_id', $tray_id);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+		}
 		
-		}
 		public function updateTray($tray_id){
 		
 		}
