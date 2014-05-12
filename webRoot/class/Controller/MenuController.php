@@ -12,6 +12,7 @@
 				throw('No Menu Id');
 				
 			$this->setMenuId($menu_id);
+			$this->populateMenuName();
 		}
 		
 		public function addMenuCategory($parent_left_pointer, $category_name, $menu_id = null) {
@@ -38,6 +39,15 @@
 			
 			$menu = $DB->getMenuByVendor($vendorId);
 			
+		}
+		
+		private function populateMenuName() {
+			$DB = $this->getDB();
+			
+			$this->setName($DB->getMenuName($this->getMenuId()));
+			
+			return true;
+		
 		}
 		
 	}

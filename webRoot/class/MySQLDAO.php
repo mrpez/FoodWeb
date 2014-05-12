@@ -388,6 +388,26 @@
 			return $query->fetchAll();
 		}
 		
+		public function getMenuName($menuId) {
+			$PDODB = $this->getPDO();
+			
+			$query = $PDODB->prepare("SELECT name
+									  FROM menus 
+									  WHERE id = :menuId;");
+			$query->bindParam(':menuId', $menuId);
+			if(!$query->execute()) {
+				Utility::throwError($query->errorInfo());
+				return false;
+			}
+			
+			$q = $query->fetchAll();
+			
+			if( count($q) )
+				return $q[0]['name'];
+				
+			return '';
+		}
+		
 		public function getVendorName($vendor_id) {
 			$PDODB = $this->getPDO();
 			
@@ -407,6 +427,52 @@
 				return $qryResults[0]['name'];
 				
 			return false;
+		}
+		
+		public function getVendorInfo($vendorId) {
+			$PDODB = $this->getPDO();
+			
+			$q = $PDODB->prepare("SELECT V.name
+								  FROM vendors V
+								  WHERE V.id = :id;");
+			$q->bindParam(':id', $vendorId);
+			if(!$q->execute()) {
+				Utility::throwError($q->errorInfo());
+				return false;
+			}
+			
+			// If it exists, fail
+			$qryResults = $q->fetchAll();
+			if( count($qryResults) )
+				return $qryResults[0];
+				
+			return false;		
+		}
+		
+		public function getVendorLocationInfo($vendorId, $locationId) {
+			$PDODB = $this->getPDO();
+			
+			$q = $PDODB->prepare("SELECT V.name
+										 , VL.address
+										 , VL.zipcode
+								  FROM vendors V
+								  INNER JOIN vendor_locations VL
+									ON V.id = VL.vendor_id
+									AND VL.id = :locationId
+								  WHERE V.id = :id;");
+			$q->bindParam(':id', $vendorId);
+			$q->bindParam(':locationId', $locationId);
+			if(!$q->execute()) {
+				Utility::throwError($q->errorInfo());
+				return false;
+			}
+			
+			// If it exists, fail
+			$qryResults = $q->fetchAll();
+			if( count($qryResults) )
+				return $qryResults[0];
+				
+			return false;		
 		}
 		
 		public function updateProduct($item_id, $name, $price, $description) {

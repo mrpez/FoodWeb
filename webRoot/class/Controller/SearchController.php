@@ -40,6 +40,7 @@
 										 , V.id AS vendor_id
 										 , VL.address
 										 , VL.zipcode
+										 , VL.id AS location_id
 								  FROM vendor_locations VL
 								  INNER JOIN vendors V
 									ON VL.vendor_id = V.id

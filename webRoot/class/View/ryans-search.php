@@ -32,7 +32,7 @@
 							' . $cityInfo['city'] . ', ' . $cityInfo['state'] . ' ' . $searchResults[$i]['zipcode'] . '
 							
 						</p>
-						<a href="/view-vendor.fw?vendorId=' . $searchResults[$i]['vendor_id'] . '">More Info</a>
+						<a href="/view-vendor.fw?vendorId=' . $searchResults[$i]['vendor_id'] . '&locationId=' . $searchResults[$i]['location_id'] . '">More Info</a>
 					  </div>';
 			}
 	echo '</div><!-- end searchTable -->';
