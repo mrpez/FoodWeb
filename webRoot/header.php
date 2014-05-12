@@ -15,6 +15,7 @@
 		body {
 			padding: 0;
 			margin: 0;
+			background-image:url('/lib/img/concrete_wall.png');
 		}
 		
 		div#headerBand {
@@ -58,6 +59,17 @@
 		.error {
 			color: red;
 		}
+		
+		div#contentContainer {
+			width: 95%;
+			margin: 0 auto;
+			background-color: #FFF;
+			border-right: 2px solid #DDD;
+			border-left: 2px solid #DDD;
+			min-height: 700px;
+			padding: 5px;
+			font-family: Arial;
+		}
 	</style>
 </head>
 <body>
@@ -77,3 +89,4 @@
 		</div>
 		<div style="clear:both;"></div>
 	</div>
+	<div id="contentContainer">
